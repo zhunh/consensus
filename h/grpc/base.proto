@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+service NodeServer{
+    rpc PowBroadcast(PowReqMsg)returns(PowRspMsg);
+    rpc PosBroadcast(PosReqMsg)returns(PosRspMsg);
+    rpc StartMining(StartMiningReq)returns(StartMiningRsp);
+    //获取难度值
+    //rpc GetDifficulty(NonceReq)returns(NonceRsp);
+
+}
+
+service MainNodeService{
+    //注册节点
+    rpc RegisterNode(RegisterReq)returns(RegisterRsp);
+    //记账权确认
+    rpc RecordPeer(LedgerReq)returns(LedgerRsp);
+}
+
+//pow消息格式
+message PowReqMsg{
+    string PowReqMsg = 1;
+}
+
+message PowRspMsg{
+    string PowRspMsg = 1;
+}
+//pos消息格式
+message PosReqMsg{
+    string PosReqMsg = 1;
+}
+
+message PosRspMsg{
+    string PosRspMsg = 1;
+}
+
+//难度值
+message NonceReq{
+    string GetNonce = 1;
+}
+message NonceRsp{
+    string Difficulty = 1;
+}
+//记账节点确认
+message LedgerReq{
+    string Nonce = 1;
+    string CostTime = 2;
+    string Result = 3;
+    string Ip = 4;
+}
+message LedgerRsp{
+    string LedgerRsp = 1;
+}
+//注册节点
+message RegisterReq{
+    string nodePort = 1;
+    string token = 2;
+}
+message RegisterRsp{
+    string RegisterRsp = 1;
+}
+//挖矿请求
+message StartMiningReq{
+    string DT = 1;
+}
+message StartMiningRsp{
+    string StartMiningRsp = 1;
+}
+
